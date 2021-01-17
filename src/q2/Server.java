@@ -7,6 +7,8 @@ import java.net.*;
 /**
  * @author Or Aviv
  */
+
+// multicast Server class;
 public class Server
 {
     public static void main(String[] args)
