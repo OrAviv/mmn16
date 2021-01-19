@@ -55,13 +55,7 @@ public class ClientPanel extends JPanel
         textAreaPanel.add(textField);
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-        buttonPane.add(Box.createHorizontalStrut(2));
-        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
-        buttonPane.add(Box.createHorizontalStrut(2));
         buttonPane.add(logout);
-        buttonPane.add(Box.createHorizontalStrut(2));
-        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
-        buttonPane.add(Box.createHorizontalStrut(2));
         buttonPane.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         bottomPanel.add(textAreaPanel);
         bottomPanel.add(buttonPane);

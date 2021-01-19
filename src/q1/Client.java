@@ -18,7 +18,8 @@ public class Client extends Thread {
     private ClientFrame clientGUI;
 
 
-    public Client(Socket socket, Server server) throws IOException {
+    public Client(Socket socket, Server server) throws IOException
+    {
         this.computerName = JOptionPane.showInputDialog(null, "Enter your name:");
         this.myServer = server;
         this.outputStream = new ObjectOutputStream(socket.getOutputStream());

@@ -3,12 +3,11 @@ package q1;
 import javax.swing.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class CreateClient
 {
-    public static void main(String[] args)
+    public CreateClient()
     {
         Socket socket;
         try
@@ -19,12 +18,27 @@ public class CreateClient
                 socket = new Socket("localhost", 7777);
             else
                 socket = new Socket(server, 7777);
-
-            ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
+            try
+            {
+                Object input = in.readObject();
+                while (true)
+                {
+                    if (input instanceof Client)
+                        break;
+                    input = in.readObject();
+                }
+                Client c = (Client) input;
+                c.start();
+            }
+            catch (IOException | ClassNotFoundException e) {}
         }
+
         catch (IOException e) {}
+    }
 
-
+    public static void main(String[] args)
+    {
+        CreateClient c = new CreateClient();
     }
 }

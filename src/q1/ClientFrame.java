@@ -2,6 +2,8 @@ package q1;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
+import java.net.Socket;
 
 public class ClientFrame extends JFrame
 {
@@ -18,4 +20,5 @@ public class ClientFrame extends JFrame
         frame.pack();
         frame.setVisible(true);
     }
+
 }

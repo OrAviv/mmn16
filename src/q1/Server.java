@@ -10,6 +10,7 @@ public class Server
     public static final int port = 7777;
 
     private ServerSocket serverSocket;
+    private ObjectOutputStream outputStream;
     public ArrayList<Client> activeClients;
 
     public Server()
@@ -22,7 +23,9 @@ public class Server
             while (true)
             {
                 Socket socket = this.serverSocket.accept();
+                this.outputStream = new ObjectOutputStream(socket.getOutputStream());
                 Client client = new Client(socket, this);
+                this.outputStream.writeObject(client);
                 this.activeClients.add(client);
                 client.start();
             }
