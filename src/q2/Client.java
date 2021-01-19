@@ -3,6 +3,7 @@ package q2;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.*;
+import java.time.LocalTime;
 
 /**
  * @author Or Aviv
@@ -16,6 +17,7 @@ public class Client extends Thread
     private byte[] buffer;
     private boolean isSubscribe;
     private DefaultListModel listModel;
+    private LocalTime currentTime;
 
     // Constructor.
     public Client(DefaultListModel listModel)
@@ -57,7 +59,8 @@ public class Client extends Thread
             while (isSubscribe)
             {
                 multicastSocket.receive(packet);
-                this.listModel.addElement(new String(packet.getData(), packet.getOffset(), packet.getLength()));
+                this.listModel.addElement(this.currentTime.now() +
+                                new String(packet.getData(), packet.getOffset(), packet.getLength()));
             }
         }
         catch (IOException e) {}
