@@ -3,6 +3,7 @@ package q1;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.IllformedLocaleException;
 
 /**@author Or Aviv*/
 public class Server
@@ -23,11 +24,11 @@ public class Server
             while (true)
             {
                 Socket socket = this.serverSocket.accept();
-                this.outputStream = new ObjectOutputStream(socket.getOutputStream());
+//                this.outputStream = new ObjectOutputStream(socket.getOutputStream());
                 Client client = new Client(socket, this);
-                this.outputStream.writeObject(client);
                 this.activeClients.add(client);
-                client.start();
+//                this.outputStream.writeObject(client);
+//                client.start();
             }
 
         }

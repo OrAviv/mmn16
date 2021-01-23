@@ -22,11 +22,12 @@ public class Client extends Thread {
     {
         this.computerName = JOptionPane.showInputDialog(null, "Enter your name:");
         this.myServer = server;
-        this.outputStream = new ObjectOutputStream(socket.getOutputStream());
-        this.inputStream = new ObjectInputStream(socket.getInputStream());
-        this.socket = new Socket(this.host, this.port);
-        System.out.println("After connection");
+        this.socket = new Socket(socket.getInetAddress(), this.port);
         this.isConnected = true;
+        this.outputStream = new ObjectOutputStream(this.socket.getOutputStream());
+        this.outputStream.writeObject(this);
+        this.inputStream = new ObjectInputStream(this.socket.getInputStream());
+        System.out.println("After connection");
         this.clientGUI = new ClientFrame(this);
         this.sendMessage(this.computerName + " joins the chat.");
         this.myServer.addNewParticipant(this.getComputerName());
